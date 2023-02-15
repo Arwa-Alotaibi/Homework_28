@@ -29,7 +29,7 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity UpdateUser(@Valid @RequestBody User user,@AuthenticationPrincipal User user_id){
-        userService.UpdateUser(user.getId(), user);
+        userService.UpdateUser(user_id.getId(), user);
         return ResponseEntity.status(200).body(new ApiResponse("user updated"));
     }
 
@@ -39,4 +39,8 @@ public class UserController {
         return ResponseEntity.status(200).body(new ApiResponse("user deleted!"));
     }
 
+    @GetMapping("/get/users/{user_id}")
+    public ResponseEntity GetUserbyid( @AuthenticationPrincipal @PathVariable Integer user_id){
+        return ResponseEntity.status(200).body(userService.GetUserById(user_id));
+    }
 }

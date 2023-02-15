@@ -28,13 +28,13 @@ public class UserService {
     }
     public void UpdateUser(Integer user_id,User user){
         User old_user= userRepository.findUserById(user_id);
-        if(old_user==null){
-            throw new ApiException("user id not found");
-        }
-        //id - username - password - role(CUSTOMER-ADMIN) (Add All Required Validation)
+//        if(old_user==null){
+//            throw new ApiException("user id not found");
+//        }
         old_user.setUsername(user.getUsername());
+        //id - username - password - role(CUSTOMER-ADMIN) (Add All Required Validation)
        // old_user.setPassword(user.getPassword());
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setPassword(new BCryptPasswordEncoder().encode(old_user.getPassword()));
         old_user.setRole(user.getRole());
         userRepository.save(old_user);
     }
@@ -45,5 +45,15 @@ public class UserService {
             throw new ApiException("User id not found");
         }
         userRepository.delete(delete_user);
+    }
+
+    public User GetUserById(Integer user_id){
+        User user = userRepository.findUserById(user_id);
+        if(user==null){
+            throw new ApiException("user id not found");
+        } else if (user.getId()!=user_id) {
+            throw new ApiException("You do not have the authority to search");
+        }
+        return user;
     }
 }

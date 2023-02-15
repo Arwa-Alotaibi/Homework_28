@@ -20,12 +20,12 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
 
-    //@NotNull
+    @NotNull
     private int quantity;
-    //@NotNull
+    @NotNull
     private double totalPrice;
 
-    //@NotNull
+    @NotNull
     private String dateReceived ;
     @Pattern(regexp = "(new|inProgress|completed)",message = "status must be in new or inProgress or completed")
     @NotNull(message = "the status should be not null")
