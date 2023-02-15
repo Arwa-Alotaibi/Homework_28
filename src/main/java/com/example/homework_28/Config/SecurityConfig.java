@@ -35,9 +35,9 @@ public class SecurityConfig {
                 .and()
                 .authenticationProvider(daoAuthenticationProvider())
                 .authorizeHttpRequests()
-                .requestMatchers( "/api/v1/users/getuser","/api/v1/users/register","/api/v1/product/update/**","/api/v1/product","/api/v1/product/add","/api/v1/product/delete/**","/api/v1/product/getproduct","/api/v1/orders/delete/**","/api/v1/orders/Status/**","/api/v1/product/get/product/**","/api/v1/users/update","/api/v1/users/get/users/**").permitAll()
+                .requestMatchers( "/api/v1/users/getuser","/api/v1/users/register","/api/v1/product/update/**","/api/v1/product","/api/v1/product/add","/api/v1/product/delete/**","/api/v1/product/getproduct","/api/v1/orders/delete/**","/api/v1/product/get/product/**","/api/v1/users/update","/api/v1/users/get/users/**").permitAll()
                 .requestMatchers("/api/v1/users/update","/api/v1/product/add" ,"/api/v1/users/get/users/**", "/api/v1/users/delete/**",
-                        "api/v1/product","/api/v1/product/update/**","/api/v1/product/delete/**","/api/v1/product/getproduct").hasAuthority("ADMIN")
+                        "api/v1/product","/api/v1/product/update/**","/api/v1/product/delete/**","/api/v1/product/getproduct","/api/v1/orders/Status/**").hasAuthority("ADMIN")
                 .requestMatchers("/api/v1/user/delete/**","/api/v1/product/add","/api/v1/product/delete/**","/api/v1/product/getproduct","/api/v1/orders","/api/v1/orders/add/**","/api/v1/orders/get/orders","/api/v1/orders/update/**","/api/v1/orders/get/**").hasAuthority("CUSTOMER")
                 .anyRequest().authenticated()
                 .and()

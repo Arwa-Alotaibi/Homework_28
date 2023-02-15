@@ -34,13 +34,8 @@ public class OrderService {
             throw new ApiException("product id not found!");
         }
         else if(product!=null){
-            if(order.getTotalPrice()<product.getPrice()) {
-                throw new ApiException("the product price is greater than your orders");
-            }
-                else if (order.getStatus().equals("new")) {
-                    double All_total = order.getTotalPrice()-product.getPrice();
-                    order.setTotalPrice(All_total);
-            }
+            order.setStatus("new");
+            order.setTotalPrice(order.getQuantity()*product.getPrice());
         }
         order.setProduct(product);
         order.setUser(user);
